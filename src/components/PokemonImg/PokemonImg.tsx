@@ -1,6 +1,6 @@
-import pokemonPng from "./133.png";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import pokemonPng from "./133.png";
 
 const PokemonImg = () => {
   const image = css({
@@ -10,7 +10,7 @@ const PokemonImg = () => {
   });
 
   return (
-    <div >
+    <div>
       <img src={pokemonPng} css={image} alt="pokemon" />
     </div>
   );

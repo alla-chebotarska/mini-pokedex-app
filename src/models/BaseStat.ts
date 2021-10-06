@@ -7,12 +7,11 @@ export default class BaseStat {
     this.name = name;
   }
 
-	public getValue(): number {
-		return this.value;
-	}
+  public getValue(): number {
+    return this.value;
+  }
 
-	public getName(): string {
-		return this.name;
-	}
-
+  public getName(): string {
+    return this.name;
+  }
 }

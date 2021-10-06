@@ -1,14 +1,14 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import React, { useState } from "react";
 import Ability from "../../models/Ability";
 import BaseStat from "../../models/BaseStat";
 import Pokemon from "../../models/Pokemon";
-import PokemonImg from "../PokemonImg/PokemonImg";
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { CardStats } from "../CardStats/CardStats";
-import { CardAbilities } from "../CardAbilities/CardAbilities";
+import { CardAbilityPanel } from "../CardAbilityPanel/CardAbilityPanel";
 import { CardParameters } from "../CardParameters/CardParameters";
-import { CardType } from "../CardType/CardType";
+import { CardStatsTable } from "../CardStatsTable/CardStatsTable";
+import { CardTypeList } from "../CardTypeList/CardTypeList";
+import PokemonImg from "../PokemonImg/PokemonImg";
 
 export default function Card() {
   const [pokemon, setPokemon] = useState(
@@ -17,7 +17,7 @@ export default function Card() {
       12,
       34,
       ["normal", "water"],
-      [new Ability("static", false), new Ability("lightning-rod", true)],
+      [new Ability("static", false), new Ability("lightning-rod", true), new Ability("static", false),],
       [
         new BaseStat(55, "hp"),
         new BaseStat(55, "Attack"),
@@ -27,6 +27,11 @@ export default function Card() {
       ]
     )
   );
+
+  const cardContainer = css({
+    display: "flex",
+    justifyContent: "center",
+  });
 
   const card = css({
     display: "inline-block",
@@ -54,20 +59,22 @@ export default function Card() {
   });
 
   return (
-    <figure css={card}>
-      <div css={cardImageContainer}>
-        <PokemonImg />
-      </div>
-      <figcaption css={cardCaption}>
-        <CardParameters
-          name={pokemon.getName()}
-          height={pokemon.getHeight()}
-          weight={pokemon.getWeight()}
-        />
-        <CardType types={pokemon.getTypes()} />
-        <CardStats baseStats={pokemon.getBaseStats()} />
-        <CardAbilities abilities={pokemon.getAbilities()} />
-      </figcaption>
-    </figure>
+    <div css={cardContainer}>
+      <figure css={card}>
+        <div css={cardImageContainer}>
+          <PokemonImg />
+        </div>
+        <figcaption css={cardCaption}>
+          <CardParameters
+            name={pokemon.getName()}
+            height={pokemon.getHeight()}
+            weight={pokemon.getWeight()}
+          />
+          <CardTypeList types={pokemon.getTypes()} />
+          <CardStatsTable baseStats={pokemon.getBaseStats()} />
+          <CardAbilityPanel abilities={pokemon.getAbilities()} />
+        </figcaption>
+      </figure>
+    </div>
   );
 }
