@@ -2,20 +2,24 @@ import React from "react";
 import Card from "./components/Card/Card";
 import Search from "./components/Search/Search";
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from "@emotion/react";
+import { css } from "@emotion/react";
 
 function App() {
+  const app = css({
+    fontFamily: ["Open Sans Condensed", "Open Sans", "Helvetica", "sans-serif"],
 
-const app = css({
-  fontFamily: ["Open Sans Condensed", "Open Sans", "Helvetica", "sans-serif"],
-  textAlign: "center",
-  margin: "20px",
-})
+    margin: "20px",
+  });
+
+  const cardContainer = css({
+    display: "flex",
+    justifyContent: "center",
+  });
 
   return (
     <div css={app}>
       <Search />
-      <div>
+      <div css={cardContainer}>
         <Card />
       </div>
     </div>
