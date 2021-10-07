@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import React, { useState } from "react";
-import Ability from "../../models/Ability";
-import BaseStat from "../../models/BaseStat";
+import React from "react";
 import Pokemon from "../../models/Pokemon";
 import { CardAbilityPanel } from "../CardAbilityPanel/CardAbilityPanel";
 import { CardParameters } from "../CardParameters/CardParameters";
@@ -10,28 +8,11 @@ import { CardStatsTable } from "../CardStatsTable/CardStatsTable";
 import { CardTypeList } from "../CardTypeList/CardTypeList";
 import PokemonImg from "../PokemonImg/PokemonImg";
 
-export default function Card() {
-  const [pokemon, setPokemon] = useState(
-    new Pokemon(
-      "Eevee",
-      12,
-      34,
-      ["normal", "water"],
-      [
-        new Ability("static", false),
-        new Ability("lightning-rod", true),
-        new Ability("static", false),
-      ],
-      [
-        new BaseStat(55, "hp"),
-        new BaseStat(55, "Attack"),
-        new BaseStat(45, "Special Attack"),
-        new BaseStat(65, "Special Defense"),
-        new BaseStat(55, "Speed"),
-      ]
-    )
-  );
+interface ICardProps {
+  pokemon: Pokemon;
+}
 
+const Card: React.FC<ICardProps> = ({ pokemon }) => {
   const getGradient = (types: string[]) => {
     let type = types[0];
     let cardBackground;
@@ -110,7 +91,7 @@ export default function Card() {
     <div css={cardContainer}>
       <figure css={card}>
         <div css={cardImageContainer}>
-          <PokemonImg />
+          <PokemonImg src={pokemon.getImage()}/>
         </div>
         <figcaption css={cardCaption}>
           <CardParameters
@@ -125,4 +106,5 @@ export default function Card() {
       </figure>
     </div>
   );
-}
+};
+export default Card;

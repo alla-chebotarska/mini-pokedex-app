@@ -20,6 +20,7 @@ export const CardParameters: React.FC<ICardParametersProps> = ({
     display: "flex",
     justifyContent: "center",
     marginTop: "5px",
+    textTransform: "capitalize",
   });
 
   return (

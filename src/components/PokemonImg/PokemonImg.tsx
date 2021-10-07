@@ -1,8 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import pokemonPng from "./133.png";
 
-const PokemonImg = () => {
+interface IPokemonImgProps{
+  src: string;
+}
+
+const PokemonImg: React.FC<IPokemonImgProps> = ({src}) => {
   const image = css({
     maxHeight: "150px",
     textAlign: "center",
@@ -11,9 +14,10 @@ const PokemonImg = () => {
 
   return (
     <div>
-      <img src={pokemonPng} css={image} alt="pokemon" />
+      <img src={src} css={image} alt="pokemon" />
     </div>
   );
 };
 
 export default PokemonImg;
+

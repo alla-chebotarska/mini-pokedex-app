@@ -1,8 +1,7 @@
-import React from "react";
-import Card from "./components/Card/Card";
-import Search from "./components/Search/Search";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import React from "react";
+import Main from "./components/Main/Main";
 
 function App() {
   const app = css({
@@ -12,8 +11,7 @@ function App() {
 
   return (
     <div css={app}>
-      <Search />
-      <Card />
+      <Main />
     </div>
   );
 }

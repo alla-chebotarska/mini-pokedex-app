@@ -6,7 +6,7 @@ interface IButtonProps {
   onButtonClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-export const Button: React.FC<IButtonProps> = (props) => {
+const Button: React.FC<IButtonProps> = ({ onButtonClick }) => {
   const button = css({
     padding: "12px 20px",
     margin: "8px, 0",
@@ -16,8 +16,10 @@ export const Button: React.FC<IButtonProps> = (props) => {
     borderRadius: "4px",
   });
   return (
-    <button css={button} onClick={props.onButtonClick}>
+    <button css={button} onClick={onButtonClick}>
       Go
     </button>
   );
 };
+
+export default Button;

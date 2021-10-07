@@ -2,6 +2,7 @@ import Ability from "./Ability";
 import BaseStat from "./BaseStat";
 
 export default class Pokemon {
+  private image: string;
   private name: string;
   private height: number;
   private weight: number;
@@ -10,6 +11,7 @@ export default class Pokemon {
   private baseStats: BaseStat[];
 
   constructor(
+    image: string,
     name: string,
     height: number,
     weight: number,
@@ -17,6 +19,7 @@ export default class Pokemon {
     abilities: Ability[],
     baseStats: BaseStat[]
   ) {
+    this.image = image;
     this.name = name;
     this.height = height;
     this.weight = weight;
@@ -24,6 +27,12 @@ export default class Pokemon {
     this.abilities = abilities;
     this.baseStats = baseStats;
   }
+
+
+	public getImage(): string {
+		return this.image;
+	}
+
 
   public getName(): string {
     return this.name;

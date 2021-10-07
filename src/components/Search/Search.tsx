@@ -1,16 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React from "react";
-import PokemonService from "../../services/PokemonService";
-import { Button } from "../Button/Button";
+import Button from "../Button/Button";
 import Input from "../Input/Input";
 
-export default function Search() {
-  const pokemonService = new PokemonService("https://pokeapi.co/api/v2/");
+interface ISearchProps {
+  onButtonClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  inputValue: string;
+}
 
-  const onButtonClick = (event: React.MouseEvent<HTMLElement>) => {
-    pokemonService.getPokemon("ditto");
-  };
+const Search: React.FC<ISearchProps> = ({onButtonClick, onInputChange, inputValue}) => {
 
   const searchContainer = css({
     display: "flex",
@@ -20,8 +20,10 @@ export default function Search() {
 
   return (
     <div css={searchContainer}>
-      <Input />
+      <Input inputValue={inputValue} onInputChange={onInputChange} />
       <Button onButtonClick={onButtonClick} />
     </div>
   );
 }
+
+export default Search

@@ -1,4 +1,6 @@
 import axios, { AxiosInstance } from "axios";
+import Converter from "../models/Converter";
+import Pokemon from "../models/Pokemon";
 
 export default class PokemonService {
   private baseUrl: string;
@@ -11,17 +13,12 @@ export default class PokemonService {
     });
   }
 
-  public getPokemon(name: string) {
-    this.axios
+  public getPokemon(name: string): Promise<Pokemon> {
+    return this.axios
       .get(`/pokemon/${name}`)
       .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
+        return Converter.toPokemon(response.data);
       });
   }
+
 }

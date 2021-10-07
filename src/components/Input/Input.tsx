@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-export default function Input() {
+interface IInputProps {
+  inputValue: string;
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Input: React.FC<IInputProps> = ({ inputValue, onInputChange }) => {
   const input = css({
     width: "40%",
     padding: "12px 20px",
@@ -11,5 +16,14 @@ export default function Input() {
     borderRadius: "4px",
   });
 
-  return <input css={input} placeholder="Search"></input>;
-}
+  return (
+    <input
+      css={input}
+      value={inputValue}
+      onChange={onInputChange}
+      placeholder="Search"
+    ></input>
+  );
+};
+
+export default Input;
