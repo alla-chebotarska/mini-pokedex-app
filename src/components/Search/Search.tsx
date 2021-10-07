@@ -5,13 +5,16 @@ import Button from "../Button/Button";
 import Input from "../Input/Input";
 
 interface ISearchProps {
-  onButtonClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  onSubmit: () => void;
   onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   inputValue: string;
 }
 
-const Search: React.FC<ISearchProps> = ({onButtonClick, onInputChange, inputValue}) => {
-
+const Search: React.FC<ISearchProps> = ({
+  onSubmit: onSubmit,
+  onInputChange,
+  inputValue,
+}) => {
   const searchContainer = css({
     display: "flex",
     justifyContent: "center",
@@ -20,10 +23,14 @@ const Search: React.FC<ISearchProps> = ({onButtonClick, onInputChange, inputValu
 
   return (
     <div css={searchContainer}>
-      <Input inputValue={inputValue} onInputChange={onInputChange} />
-      <Button onButtonClick={onButtonClick} />
+      <Input
+        inputValue={inputValue}
+        onInputChange={onInputChange}
+        onEnter={onSubmit}
+      />
+      <Button onButtonClick={onSubmit} />
     </div>
   );
-}
+};
 
-export default Search
+export default Search;

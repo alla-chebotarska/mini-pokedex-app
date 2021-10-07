@@ -4,12 +4,15 @@ import BaseStat from "../../models/BaseStat";
 import Pokemon from "../../models/Pokemon";
 import PokemonService from "../../services/PokemonService";
 import Card from "../Card/Card";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Search from "../Search/Search";
 
 export default function Main() {
   const pokemonService = new PokemonService("https://pokeapi.co/api/v2/");
 
   const [inputValue, setInputValue] = useState("");
+  const [invalidPokemonNameMessage, setInvalidPokemonNameMessage] =
+    useState("");
   const [pokemon, setPokemon] = useState(
     new Pokemon(
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png",
@@ -36,21 +39,35 @@ export default function Main() {
     setInputValue(event.target.value);
   };
 
-  const onButtonClick = (event: React.MouseEvent<HTMLElement>) => {
-    pokemonService.getPokemon(inputValue).then((pokemon) => {
-      setPokemon(pokemon);
-      console.log(pokemon);
-    });
+  const onButtonClick = () => {
+    if (inputValue === "") {
+      return;
+    }
+    pokemonService
+      .getPokemon(inputValue)
+      .then((pokemon) => {
+        setPokemon(pokemon);
+        setInputValue("");
+        setInvalidPokemonNameMessage("");
+      })
+      .catch((error) => {
+        setInvalidPokemonNameMessage("Error");
+        console.log(error);
+      });
   };
 
   return (
     <>
       <Search
-        onButtonClick={onButtonClick}
+        onSubmit={onButtonClick}
         onInputChange={onInputChange}
         inputValue={inputValue}
       />
-      <Card pokemon={pokemon} />
+      {invalidPokemonNameMessage ? (
+        <ErrorMessage message="To see pokemon card please input valid pokemon name" />
+      ) : (
+        <Card pokemon={pokemon} />
+      )}
     </>
   );
 }
