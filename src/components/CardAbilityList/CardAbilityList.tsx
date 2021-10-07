@@ -31,8 +31,8 @@ export const CardAbilityList: React.FC<ICardAbilitiesProps> = ({
       <span css={abilityItem}>{isHidden ? "Hidden" : ""} Ability</span>
       {abilities
         .filter((ability) => ability.getIsHidden() === isHidden)
-        .map((ability) => (
-          <AbilityItem ability={ability} />
+        .map((ability, idx) => (
+          <AbilityItem ability={ability} key={idx}/>
         ))}
     </h4>
   );

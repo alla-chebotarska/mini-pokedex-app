@@ -17,8 +17,8 @@ export const CardStatsTable: React.FC<ICardStatsTableProps> = ({ baseStats }) =>
   return (
     <table css={cardStatsTable}>
       <tbody>
-        {baseStats.map((baseStat) => (
-          <StatItem baseStat={baseStat}/>
+        {baseStats.map((baseStat, idx) => (
+          <StatItem baseStat={baseStat} key={idx}/>
         ))}
       </tbody>
     </table>
