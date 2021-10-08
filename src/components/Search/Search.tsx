@@ -11,7 +11,7 @@ interface ISearchProps {
 }
 
 const Search: React.FC<ISearchProps> = ({
-  onSubmit: onSubmit,
+  onSubmit,
   onInputChange,
   inputValue,
 }) => {

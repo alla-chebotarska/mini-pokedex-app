@@ -26,7 +26,7 @@ export default function Main() {
         new Ability("static", false),
       ],
       [
-        new BaseStat(55, "hp"),
+        new BaseStat(155, "hp"),
         new BaseStat(55, "Attack"),
         new BaseStat(45, "Special Attack"),
         new BaseStat(65, "Special Defense"),
