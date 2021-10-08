@@ -6,6 +6,7 @@ import { CardAbilityPanel } from "../CardAbilityPanel/CardAbilityPanel";
 import { CardParameters } from "../CardParameters/CardParameters";
 import { CardStatsTable } from "../CardStatsTable/CardStatsTable";
 import { CardTypeList } from "../CardTypeList/CardTypeList";
+import Loader from "../Loader/Loader";
 import PokemonImg from "../PokemonImg/PokemonImg";
 
 interface ICardProps {
@@ -93,7 +94,7 @@ const Card: React.FC<ICardProps> = ({ pokemon }) => {
   return (
     <>
       {pokemon == null ? (
-        ""
+        <Loader />
       ) : (
         <figure css={card}>
           <div css={cardImageContainer}>

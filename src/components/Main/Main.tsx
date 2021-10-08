@@ -4,7 +4,6 @@ import Pokemon from "../../models/Pokemon";
 import PokemonService from "../../services/PokemonService";
 import CardContainer from "../CardContainer/CardContainer";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import Loader from "../Loader/Loader";
 import Search from "../Search/Search";
 
 export default function Main() {
@@ -17,7 +16,7 @@ export default function Main() {
   const [invalidPokemonNameMessage, setInvalidPokemonNameMessage] =
     useState("");
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
-
+ 
   useEffect(() => {
     for (let i = 0; i < 4; ++i) {
       pokemonService.getPokemonById(randomNumber(898)).then((randomPokemon) => {
@@ -37,7 +36,7 @@ export default function Main() {
       return;
     }
     pokemonService
-      .getPokemonByName(inputValue)
+      .getPokemonByName(inputValue.toLowerCase())
       .then((pokemon) => {
         setPokemon([pokemon]);
         setInputValue("");
@@ -60,7 +59,6 @@ export default function Main() {
       ) : (
         <CardContainer pokemon={pokemon} />
       )}
-      <Loader />
     </>
   );
 }

@@ -7,7 +7,6 @@ function App() {
   const app = css({
     fontFamily: "Open Sans Condensed, Open Sans, Helvetica, sans-serif",
     padding: "20px",
-    backgroundColor: " #f9f9f9",
   });
 
   return (

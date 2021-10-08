@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React from "react";
+import { DEFAULT, DEFAULT_LIGHT } from "../../colors";
 
 interface IInputProps {
   inputValue: string;
@@ -13,17 +14,16 @@ const Input: React.FC<IInputProps> = ({
   onInputChange,
   onEnter,
 }) => {
-
   const input = css({
     width: "40%",
     padding: "12px 20px",
     margin: "8px, 0",
-    border: "2px solid #d9d9d9",
+    border: `2px solid ${DEFAULT_LIGHT}`,
     borderRadius: "4px",
     "&:focus": {
       outline: "none",
-      border: "2px solid #b3b3b3",
-    }
+      border: `2px solid ${DEFAULT}`,
+    },
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
