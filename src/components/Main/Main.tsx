@@ -15,7 +15,7 @@ export default function Main() {
     useState("");
   const [pokemon, setPokemon] = useState(
     new Pokemon(
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png",
+      ["https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png"],
       "Eevee",
       12,
       34,

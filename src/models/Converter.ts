@@ -5,7 +5,7 @@ import Pokemon from "./Pokemon";
 export default class Converter {
   static toPokemon(obj: any): Pokemon {
     return new Pokemon(
-      obj.sprites.other["official-artwork"].front_default,
+      this.toImagesSrc(obj.sprites),
       obj.name,
       obj.height,
       obj.weight,
@@ -13,6 +13,11 @@ export default class Converter {
       obj.abilities.map((item: any) => this.toAbility(item)),
       obj.stats.map((item: any) => this.toBaseStat(item))
     );
+  }
+
+  static toImagesSrc(imageObj: any): string[] {
+    const images = [imageObj.other["official-artwork"].front_default, imageObj.front_default, imageObj.back_default, imageObj.other.dream_world.front_default];
+    return images;
   }
 
   static toAbility(abilityObj: any): Ability {

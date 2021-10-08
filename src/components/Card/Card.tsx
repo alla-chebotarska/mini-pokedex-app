@@ -76,7 +76,7 @@ const Card: React.FC<ICardProps> = ({ pokemon }) => {
   const cardImageContainer = css({
     backgroundColor: "#2B1D19A5",
     textAlign: "center",
-    padding: " 1em 1em 0",
+    padding: " 1em 0.5em",
     borderRadius: "3px 3px 0 0",
   });
 
@@ -91,7 +91,7 @@ const Card: React.FC<ICardProps> = ({ pokemon }) => {
     <div css={cardContainer}>
       <figure css={card}>
         <div css={cardImageContainer}>
-          <PokemonImg src={pokemon.getImage()}/>
+          <PokemonImg srcArray={pokemon.getImages()} />
         </div>
         <figcaption css={cardCaption}>
           <CardParameters

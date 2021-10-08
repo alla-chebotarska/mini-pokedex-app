@@ -38,7 +38,7 @@ export const TypeBadge: React.FC<ITypeBadge> = ({ type }) => {
         badgeColor = "#ff8a95";
         break;
       default:
-        badgeColor = "linear-gradient(110deg, #FDBB2D 0%, #3A1C71 100%)";
+        badgeColor = "#C08A53";
     }
     return badgeColor;
   };
