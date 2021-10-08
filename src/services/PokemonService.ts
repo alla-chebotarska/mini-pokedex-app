@@ -13,9 +13,17 @@ export default class PokemonService {
     });
   }
 
-  public getPokemon(name: string): Promise<Pokemon> {
+  public getPokemonByName(name: string): Promise<Pokemon> {
     return this.axios
       .get(`/pokemon/${name}`)
+      .then(function (response) {
+        return Converter.toPokemon(response.data);
+      });
+  };
+
+  public getPokemonById(id: number): Promise<Pokemon> {
+    return this.axios
+      .get(`/pokemon/${id}`)
       .then(function (response) {
         return Converter.toPokemon(response.data);
       });

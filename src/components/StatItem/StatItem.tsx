@@ -11,23 +11,23 @@ export const StatItem: React.FC<ICardStatsTableProps> = ({ baseStat }) => {
   const progresColor = (value: number) => {
     let color;
     switch (true) {
-      case value < 20:
-        color = "#ff0000";
+      case value <= 20:
+        color = "#e81b10";
         break;
-      case value < 40:
-        color = "#ff9933";
+      case value <= 40:
+        color = "#e85f10";
         break;
-      case value < 60:
-        color = "#ffff66";
+      case value <= 60:
+        color = "#e8e410";
         break;
-      case value < 80:
-        color = "#99ff33";
+      case value <= 80:
+        color = "#a0e810";
         break;
-      case value < 100:
-        color = "#009900";
+      case value <= 100:
+        color = "#14e810";
         break;
       default:
-        color = "#004d00";
+        color = "#10e88a";
     }
     return color;
   };

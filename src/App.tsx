@@ -6,7 +6,8 @@ import Main from "./components/Main/Main";
 function App() {
   const app = css({
     fontFamily: "Open Sans Condensed, Open Sans, Helvetica, sans-serif",
-    margin: "20px",
+    padding: "20px",
+    backgroundColor: " #f9f9f9",
   });
 
   return (

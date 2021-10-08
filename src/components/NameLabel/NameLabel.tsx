@@ -15,5 +15,5 @@ export const NameLabel: React.FC<INameLabelProps> = ({ name }) => {
     textAlign: "center",
   });
 
-  return <h2 css={nameLabel}>{name}</h2>;
+  return <h3 css={nameLabel}>{name}</h3>;
 };

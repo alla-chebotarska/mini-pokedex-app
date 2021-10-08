@@ -1,39 +1,32 @@
-import React, { useState } from "react";
-import Ability from "../../models/Ability";
-import BaseStat from "../../models/BaseStat";
+/** @jsxImportSource @emotion/react */
+import React, { useEffect, useState } from "react";
 import Pokemon from "../../models/Pokemon";
 import PokemonService from "../../services/PokemonService";
-import Card from "../Card/Card";
+import CardContainer from "../CardContainer/CardContainer";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Loader from "../Loader/Loader";
 import Search from "../Search/Search";
 
 export default function Main() {
   const pokemonService = new PokemonService("https://pokeapi.co/api/v2/");
+  const randomNumber = function (max: number): number {
+    return Math.floor(Math.random() * max);
+  };
 
   const [inputValue, setInputValue] = useState("");
   const [invalidPokemonNameMessage, setInvalidPokemonNameMessage] =
     useState("");
-  const [pokemon, setPokemon] = useState(
-    new Pokemon(
-      ["https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png"],
-      "Eevee",
-      12,
-      34,
-      ["normal", "water"],
-      [
-        new Ability("static", false),
-        new Ability("lightning-rod", true),
-        new Ability("static", false),
-      ],
-      [
-        new BaseStat(155, "hp"),
-        new BaseStat(55, "Attack"),
-        new BaseStat(45, "Special Attack"),
-        new BaseStat(65, "Special Defense"),
-        new BaseStat(55, "Speed"),
-      ]
-    )
-  );
+  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+
+  useEffect(() => {
+    for (let i = 0; i < 4; ++i) {
+      pokemonService.getPokemonById(randomNumber(898)).then((randomPokemon) => {
+        let tmp = pokemon;
+        tmp.push(randomPokemon);
+        setPokemon([...tmp]);
+      });
+    }
+  }, []);
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(event.target.value);
@@ -44,15 +37,14 @@ export default function Main() {
       return;
     }
     pokemonService
-      .getPokemon(inputValue)
+      .getPokemonByName(inputValue)
       .then((pokemon) => {
-        setPokemon(pokemon);
+        setPokemon([pokemon]);
         setInputValue("");
         setInvalidPokemonNameMessage("");
       })
       .catch((error) => {
         setInvalidPokemonNameMessage("Error");
-        console.log(error);
       });
   };
 
@@ -66,8 +58,9 @@ export default function Main() {
       {invalidPokemonNameMessage ? (
         <ErrorMessage message="To see pokemon card please input valid pokemon name" />
       ) : (
-        <Card pokemon={pokemon} />
+        <CardContainer pokemon={pokemon} />
       )}
+      <Loader />
     </>
   );
 }

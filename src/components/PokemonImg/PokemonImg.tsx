@@ -11,6 +11,7 @@ interface IPokemonImgProps {
 const PokemonImg: React.FC<IPokemonImgProps> = ({ srcArray }) => {
   const image = css({
     maxWidth: "150px",
+    maxHeight: "150px",
     textAlign: "center",
     margin: "20px",
   });
@@ -19,10 +20,8 @@ const PokemonImg: React.FC<IPokemonImgProps> = ({ srcArray }) => {
     <Carousel showArrows={true} showThumbs={false} infiniteLoop={true}>
       {srcArray
         .filter((src) => src !== null)
-        .map((src) => (
-          <div>
-            <img src={src} css={image} alt="pokemon" />
-          </div>
+        .map((src, idx) => (
+            <img src={src} css={image} alt="pokemon" key={idx}/>
         ))}
     </Carousel>
   );

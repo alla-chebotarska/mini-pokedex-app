@@ -13,12 +13,17 @@ const Input: React.FC<IInputProps> = ({
   onInputChange,
   onEnter,
 }) => {
+
   const input = css({
     width: "40%",
     padding: "12px 20px",
     margin: "8px, 0",
-    border: "2px solid #F9F9F9",
+    border: "2px solid #d9d9d9",
     borderRadius: "4px",
+    "&:focus": {
+      outline: "none",
+      border: "2px solid #b3b3b3",
+    }
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {

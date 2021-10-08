@@ -9,7 +9,7 @@ import { CardTypeList } from "../CardTypeList/CardTypeList";
 import PokemonImg from "../PokemonImg/PokemonImg";
 
 interface ICardProps {
-  pokemon: Pokemon;
+  pokemon: Pokemon | null;
 }
 
 const Card: React.FC<ICardProps> = ({ pokemon }) => {
@@ -57,11 +57,6 @@ const Card: React.FC<ICardProps> = ({ pokemon }) => {
     return cardBackground;
   };
 
-  const cardContainer = css({
-    display: "flex",
-    justifyContent: "center",
-  });
-
   const card = css({
     display: "inline-block",
     position: "relative",
@@ -69,8 +64,15 @@ const Card: React.FC<ICardProps> = ({ pokemon }) => {
     padding: "1em",
     borderRadius: "15px",
     margin: "10px",
-    background: getGradient(pokemon.getTypes()),
+    background: pokemon == null ? "" : getGradient(pokemon.getTypes()),
     boxShadow: "0px 5px 20px -10px #3A1C71",
+    transform: `rotate(${5 - Math.floor(Math.random() * 10)}deg)`,
+    cursor: "pointer",
+    "&:hover": {
+       zIndex: 5,
+      boxShadow: "0px 13px 30px -15px #000000",
+      transform: "translateY(-10px)",
+    },
   });
 
   const cardImageContainer = css({
@@ -85,26 +87,31 @@ const Card: React.FC<ICardProps> = ({ pokemon }) => {
     padding: "1em",
     position: "relative",
     borderRadius: "0 0 3px 3px",
+    minHeight: "402px",
   });
 
   return (
-    <div css={cardContainer}>
-      <figure css={card}>
-        <div css={cardImageContainer}>
-          <PokemonImg srcArray={pokemon.getImages()} />
-        </div>
-        <figcaption css={cardCaption}>
-          <CardParameters
-            name={pokemon.getName()}
-            height={pokemon.getHeight()}
-            weight={pokemon.getWeight()}
-          />
-          <CardTypeList types={pokemon.getTypes()} />
-          <CardStatsTable baseStats={pokemon.getBaseStats()} />
-          <CardAbilityPanel abilities={pokemon.getAbilities()} />
-        </figcaption>
-      </figure>
-    </div>
+    <>
+      {pokemon == null ? (
+        ""
+      ) : (
+        <figure css={card}>
+          <div css={cardImageContainer}>
+            <PokemonImg srcArray={pokemon.getImages()} />
+          </div>
+          <figcaption css={cardCaption}>
+            <CardParameters
+              name={pokemon.getName()}
+              height={pokemon.getHeight()}
+              weight={pokemon.getWeight()}
+            />
+            <CardTypeList types={pokemon.getTypes()} />
+            <CardStatsTable baseStats={pokemon.getBaseStats()} />
+            <CardAbilityPanel abilities={pokemon.getAbilities()} />
+          </figcaption>
+        </figure>
+      )}
+    </>
   );
 };
 export default Card;
