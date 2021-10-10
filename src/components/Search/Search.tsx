@@ -20,11 +20,10 @@ const Search: React.FC<ISearchProps> = ({
 }) => {
   const [pokemonNames, setPokemonNames] = useState<string[]>([]);
 
-useEffect(() => {
-  pokemonService.getPokemonNames()
-  .then(names => setPokemonNames(names));
-   // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [])
+  useEffect(() => {
+    pokemonService.getPokemonNames().then((names) => setPokemonNames(names));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const searchContainer = css({
     display: "flex",

@@ -1,14 +1,14 @@
-import React from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import React from "react";
 import Pokemon from "../../models/Pokemon";
 import Card from "../Card/Card";
 
 interface ICardContainerProps {
-    pokemon: Pokemon[];
-  }
+  pokemon: Pokemon[];
+}
 
-const CardContainer: React.FC<ICardContainerProps> = ({pokemon}) =>{
+const CardContainer: React.FC<ICardContainerProps> = ({ pokemon }) => {
   const cardContainer = css({
     display: "flex",
     justifyContent: "center",
@@ -21,6 +21,6 @@ const CardContainer: React.FC<ICardContainerProps> = ({pokemon}) =>{
       ))}
     </div>
   );
-}
+};
 
 export default CardContainer;
