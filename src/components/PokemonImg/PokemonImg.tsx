@@ -21,7 +21,7 @@ const PokemonImg: React.FC<IPokemonImgProps> = ({ srcArray }) => {
       {srcArray
         .filter((src) => src !== null)
         .map((src) => (
-            <img src={src} css={image} alt="pokemon" key={src}/>
+          <img src={src} css={image} alt="pokemon" key={src} />
         ))}
     </Carousel>
   );

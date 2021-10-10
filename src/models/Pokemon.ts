@@ -28,9 +28,9 @@ export default class Pokemon {
     this.baseStats = baseStats;
   }
 
-	public getImages(): string[] {
-		return this.images;
-	}
+  public getImages(): string[] {
+    return this.images;
+  }
 
   public getName(): string {
     return this.name;

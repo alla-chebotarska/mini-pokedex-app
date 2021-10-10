@@ -8,7 +8,9 @@ interface ICardStatsTableProps {
   baseStats: BaseStat[];
 }
 
-export const CardStatsTable: React.FC<ICardStatsTableProps> = ({ baseStats }) => {
+export const CardStatsTable: React.FC<ICardStatsTableProps> = ({
+  baseStats,
+}) => {
   const cardStatsTable = css({
     margin: "1em 0",
     width: "100%",
@@ -18,7 +20,10 @@ export const CardStatsTable: React.FC<ICardStatsTableProps> = ({ baseStats }) =>
     <table css={cardStatsTable}>
       <tbody>
         {baseStats.map((baseStat) => (
-          <StatItem baseStat={baseStat} key={baseStat.getName() + baseStat.getValue()}/>
+          <StatItem
+            baseStat={baseStat}
+            key={baseStat.getName() + baseStat.getValue()}
+          />
         ))}
       </tbody>
     </table>

@@ -3,8 +3,7 @@ import BaseStat from "./BaseStat";
 import Pokemon from "./Pokemon";
 
 export default class Converter {
-
-  private constructor(){
+  private constructor() {
     // intentionally left blank
   }
 

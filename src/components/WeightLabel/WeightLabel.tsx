@@ -18,7 +18,6 @@ export const WeightLabel: React.FC<IWeightBadgeProps> = ({ weight }) => {
     textTransform: "uppercase",
     display: "block",
     marginBottom: "3px",
-    
   });
 
   return (

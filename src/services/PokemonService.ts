@@ -17,7 +17,7 @@ export default class PokemonService {
     return this.axios
       .get(`/pokemon/${name}`)
       .then((response) => Converter.toPokemon(response.data));
-  };
+  }
 
   public getPokemonById(id: number): Promise<Pokemon> {
     return this.axios
@@ -25,12 +25,9 @@ export default class PokemonService {
       .then((response) => Converter.toPokemon(response.data));
   }
 
-  public getPokemonNames():Promise<string[]> {
-    return this.axios
-    .get("/pokemon/?limit=1500")
-    .then((response) => {
+  public getPokemonNames(): Promise<string[]> {
+    return this.axios.get("/pokemon/?limit=1500").then((response) => {
       return Converter.toPokemonNames(response.data);
-    })
+    });
   }
-
 }
