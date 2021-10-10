@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Pokemon from "../../models/Pokemon";
 import { CardAbilityPanel } from "../CardAbilityPanel/CardAbilityPanel";
 import { CardParameters } from "../CardParameters/CardParameters";
@@ -14,6 +14,9 @@ interface ICardProps {
 }
 
 const Card: React.FC<ICardProps> = ({ pokemon }) => {
+  const [gradient, setGradient] = useState<string>("");
+  const [rotation, setRotation] = useState<number>(0);
+
   const getGradient = (types: string[]) => {
     let type = types[0];
     let cardBackground;
@@ -58,6 +61,11 @@ const Card: React.FC<ICardProps> = ({ pokemon }) => {
     return cardBackground;
   };
 
+  useEffect(() => {
+    setGradient(pokemon == null ? "" : getGradient(pokemon.getTypes()));
+    setRotation(5 - Math.floor(Math.random() * 10));
+  }, [pokemon]);
+
   const card = css({
     display: "inline-block",
     position: "relative",
@@ -65,12 +73,12 @@ const Card: React.FC<ICardProps> = ({ pokemon }) => {
     padding: "1em",
     borderRadius: "15px",
     margin: "10px",
-    background: pokemon == null ? "" : getGradient(pokemon.getTypes()),
+    background: gradient,
     boxShadow: "0px 5px 20px -10px #3A1C71",
-    transform: `rotate(${5 - Math.floor(Math.random() * 10)}deg)`,
+    transform: `rotate(${rotation}deg)`,
     cursor: "pointer",
     "&:hover": {
-       zIndex: 5,
+      zIndex: 5,
       boxShadow: "0px 13px 30px -15px #000000",
       transform: "translateY(-10px)",
     },

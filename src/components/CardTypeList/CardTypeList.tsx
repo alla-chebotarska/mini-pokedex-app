@@ -19,8 +19,8 @@ export const CardTypeList: React.FC<ICardTypeListProps> = ({ types }) => {
 
   return (
     <div css={cardTypeListContainer}>
-      {types.map((type, idx) => (
-        <TypeBadge type={type} key={idx}/>
+      {types.map((type) => (
+        <TypeBadge type={type} key={type}/>
       ))}
     </div>
   );

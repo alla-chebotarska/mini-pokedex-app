@@ -16,17 +16,21 @@ export default class PokemonService {
   public getPokemonByName(name: string): Promise<Pokemon> {
     return this.axios
       .get(`/pokemon/${name}`)
-      .then(function (response) {
-        return Converter.toPokemon(response.data);
-      });
+      .then((response) => Converter.toPokemon(response.data));
   };
 
   public getPokemonById(id: number): Promise<Pokemon> {
     return this.axios
       .get(`/pokemon/${id}`)
-      .then(function (response) {
-        return Converter.toPokemon(response.data);
-      });
+      .then((response) => Converter.toPokemon(response.data));
+  }
+
+  public getPokemonNames():Promise<string[]> {
+    return this.axios
+    .get("/pokemon/?limit=1500")
+    .then((response) => {
+      return Converter.toPokemonNames(response.data);
+    })
   }
 
 }

@@ -16,8 +16,8 @@ const CardContainer: React.FC<ICardContainerProps> = ({pokemon}) =>{
   });
   return (
     <div css={cardContainer}>
-      {pokemon.map((pokemon, idx) => (
-        <Card pokemon={pokemon} key={idx} />
+      {pokemon.map((pokemon) => (
+        <Card pokemon={pokemon} key={pokemon.getName()} />
       ))}
     </div>
   );

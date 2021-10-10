@@ -16,7 +16,7 @@ export default function Main() {
   const [invalidPokemonNameMessage, setInvalidPokemonNameMessage] =
     useState("");
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
- 
+
   useEffect(() => {
     for (let i = 0; i < 4; ++i) {
       pokemonService.getPokemonById(randomNumber(898)).then((randomPokemon) => {
@@ -25,10 +25,11 @@ export default function Main() {
         setPokemon([...tmp]);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setInputValue(event.target.value);
+  const onInputChange = (newString: string): void => {
+    setInputValue(newString);
   };
 
   const onButtonClick = () => {
@@ -53,6 +54,7 @@ export default function Main() {
         onSubmit={onButtonClick}
         onInputChange={onInputChange}
         inputValue={inputValue}
+        pokemonService={pokemonService}
       />
       {invalidPokemonNameMessage ? (
         <ErrorMessage message="To see pokemon card please input valid pokemon name" />

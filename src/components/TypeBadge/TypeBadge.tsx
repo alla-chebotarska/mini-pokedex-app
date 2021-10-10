@@ -1,12 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface ITypeBadge {
   type: string;
 }
 
 export const TypeBadge: React.FC<ITypeBadge> = ({ type }) => {
+  const [color, setColor] = useState<string>("");
+
+  useEffect(() => {
+    setColor(getBadgeColor(type));
+  }, [type]);
+
   const getBadgeColor = (type: string) => {
     let badgeColor;
     switch (type) {
@@ -50,7 +56,7 @@ export const TypeBadge: React.FC<ITypeBadge> = ({ type }) => {
     letterTpacing: "0.1em",
     padding: "0.25em",
     lineHeight: "1",
-    background: getBadgeColor(type),
+    background: color,
     fontWeight: "lighter",
     borderRadius: "2px",
   });

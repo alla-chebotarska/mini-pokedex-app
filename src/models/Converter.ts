@@ -3,6 +3,11 @@ import BaseStat from "./BaseStat";
 import Pokemon from "./Pokemon";
 
 export default class Converter {
+
+  private constructor(){
+    // intentionally left blank
+  }
+
   static toPokemon(obj: any): Pokemon {
     return new Pokemon(
       this.toImagesSrc(obj.sprites),
@@ -16,7 +21,12 @@ export default class Converter {
   }
 
   static toImagesSrc(imageObj: any): string[] {
-    const images = [imageObj.other["official-artwork"].front_default, imageObj.front_default, imageObj.back_default, imageObj.other.dream_world.front_default];
+    const images = [
+      imageObj.other["official-artwork"].front_default,
+      imageObj.front_default,
+      imageObj.back_default,
+      imageObj.other.dream_world.front_default,
+    ];
     return images;
   }
 
@@ -30,5 +40,11 @@ export default class Converter {
 
   static toType(typeObj: any): string[] {
     return typeObj.type.name;
+  }
+
+  static toPokemonNames(obj: any): string[] {
+    return obj.results.map(
+      (result: { name: string; url: string }) => result.name
+    );
   }
 }
