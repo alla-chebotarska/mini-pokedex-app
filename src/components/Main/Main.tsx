@@ -31,7 +31,7 @@ export default function Main() {
   }, []);
 
   const onInputChange = (newString: string): void => {
-    setInputValue(newString);
+    setInputValue(newString.toLowerCase());
   };
 
   const onButtonClick = () => {
@@ -40,7 +40,7 @@ export default function Main() {
     }
     setShowLoader(true);
     pokemonService
-      .getPokemonByName(inputValue.toLowerCase())
+      .getPokemonByName(inputValue)
       .then((pokemon) => {
         setPokemon([pokemon]);
         setInputValue("");

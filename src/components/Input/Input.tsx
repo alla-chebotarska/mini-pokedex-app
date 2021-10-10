@@ -43,7 +43,7 @@ const Input: React.FC<IInputProps> = ({
         onChange={(event) => {
           onInputChange(event.target.value);
         }}
-        placeholder="Search"
+        placeholder="Type pokemon name"
         onKeyDown={onKeyDown}
         ref={inputRef}
         list="suggestions-list"
