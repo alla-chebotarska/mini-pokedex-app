@@ -4,6 +4,7 @@ import Pokemon from "../../models/Pokemon";
 import PokemonService from "../../services/PokemonService";
 import CardContainer from "../CardContainer/CardContainer";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Loader from "../Loader/Loader";
 import Search from "../Search/Search";
 
 export default function Main() {
@@ -16,6 +17,7 @@ export default function Main() {
   const [invalidPokemonNameMessage, setInvalidPokemonNameMessage] =
     useState("");
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+  const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
     for (let i = 0; i < 4; ++i) {
@@ -36,6 +38,7 @@ export default function Main() {
     if (inputValue === "") {
       return;
     }
+    setShowLoader(true);
     pokemonService
       .getPokemonByName(inputValue.toLowerCase())
       .then((pokemon) => {
@@ -45,6 +48,9 @@ export default function Main() {
       })
       .catch((error) => {
         setInvalidPokemonNameMessage("Error");
+      })
+      .then((a) => {
+        setShowLoader(false);
       });
   };
 
@@ -56,6 +62,7 @@ export default function Main() {
         inputValue={inputValue}
         pokemonService={pokemonService}
       />
+      {showLoader ? <Loader /> : ""}
       {invalidPokemonNameMessage ? (
         <ErrorMessage message="To see pokemon card please input valid pokemon name" />
       ) : (
